@@ -1,12 +1,10 @@
 import os
 import datetime
-from flask import Flask, request, jsonify
+from flask import Flask, request, jsonify, render_template
 from peewee import *
 from playhouse.shortcuts import model_to_dict
-from dotenv import load_dotenv
 from app.views import views
 
-load_dotenv()
 app = Flask(__name__)
 app.register_blueprint(views)
 
@@ -50,3 +48,9 @@ def delete_time_line_post(id):
     post_delete = TimelinePost.get(TimelinePost.id == id)
     post_delete.delete_instance()
     return jsonify({"message":"TimelinePost deleted!"})
+
+@app.route('/timeline')
+def timeline():
+    timeline_posts = [model_to_dict(p) for p in TimelinePost.select().order_by(TimelinePost.
+    created_at.desc())]
+    return render_template('timeline.html', title="Timeline", posts= timeline_posts)

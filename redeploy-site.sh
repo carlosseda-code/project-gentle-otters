@@ -1,6 +1,6 @@
 #!/bin/bash
 
-tmux kill-session
+tmux kill-session -t my_session
 
 cd project-gentle-otters
 

@@ -10,7 +10,7 @@ app.register_blueprint(views)
 
 if os.getenv("TESTING") == "true":
     print("Running in test mode")
-    mydb = SqliteDatabase('file:memory?mode=memory&cache-shared', 
+    mydb = SqliteDatabase('file:memory?mode=memory&cache=shared', 
     uri=True)
 else:
     mydb = MySQLDatabase(os.getenv("MYSQL_DATABASE"),

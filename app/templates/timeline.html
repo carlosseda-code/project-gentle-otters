@@ -77,11 +77,18 @@
             method: 'POST',
             body: payload,
             })
-            .then(resp => resp.status == 400 ?  document.getElementById("error").innerText = resp.json() : resp.json())
+            .then(resp => {
+                if (resp.status == 400) {
+                    resp.text().then(errorMessage => document.getElementById("error").innerText = errorMessage)
+                } else {
+                    return resp.json()
+                }
+            })
             .then(data => console.log(data))
             .catch(error => {
                 console.log(error)
-            });
+            })
+            .finally(() => location.reload())
 
             $("#name").val("");
             $("#email").val("");

@@ -1,5 +1,6 @@
 import os
 import datetime
+import re
 from flask import Flask, request, jsonify, render_template, make_response
 from peewee import *
 from playhouse.shortcuts import model_to_dict
@@ -34,6 +35,8 @@ mydb.create_tables([TimelinePost])
 
 @app.route('/api/timeline_post', methods=['POST'])
 def post_time_line_post():
+    regex = r'\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Z|a-z]{2,}\b'
+
     try:
         name = request.form['name']
     except Exception as e:
@@ -51,7 +54,7 @@ def post_time_line_post():
 
     if name == '':
         return "Invalid name", 400
-    if email == '':
+    if email == '' or not re.fullmatch(regex, email):
         return "Invalid email", 400
     if content == '':
         return "Invalid content", 400

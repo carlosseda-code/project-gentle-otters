@@ -81,14 +81,14 @@
                 if (resp.status == 400) {
                     resp.text().then(errorMessage => document.getElementById("error").innerText = errorMessage)
                 } else {
-                    return resp.json()
+                    return resp.json();
+                    location.reload();
                 }
             })
             .then(data => console.log(data))
             .catch(error => {
                 console.log(error)
             })
-            .finally(() => location.reload())
 
             $("#name").val("");
             $("#email").val("");

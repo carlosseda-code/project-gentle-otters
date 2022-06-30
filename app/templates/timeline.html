@@ -61,12 +61,13 @@
         const form = document.getElementById('myform');
         
         form.addEventListener('submit', function(e) {
-            
+            /*
             swal({
                 title: "Successfully submitted",
                 icon: "success",
                 button: "Yes!!",
             });
+            */
 
             // Prevent default behavior:
             e.preventDefault();
@@ -77,18 +78,9 @@
             method: 'POST',
             body: payload,
             })
-            .then(resp => {
-                if (resp.status == 400) {
-                    resp.text().then(errorMessage => document.getElementById("error").innerText = errorMessage)
-                } else {
-                    return resp.json();
-                    location.reload();
-                }
-            })
-            .then(data => console.log(data))
-            .catch(error => {
-                console.log(error)
-            })
+            .then(res => res.json())
+             .then(data => console.log(data))
+             .finally(() => location.reload())
 
             $("#name").val("");
             $("#email").val("");

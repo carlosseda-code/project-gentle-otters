@@ -1,41 +1,81 @@
-/* Source: https://www.w3schools.com/howto/howto_js_quotes_slideshow.asp*/
-var slideIndex = 1;
-showSlides(slideIndex);
+(function ($) {
+	"use strict";
+	var nav = $('nav');
+  var navHeight = nav.outerHeight();
+  
+  $('.navbar-toggler').on('click', function() {
+    if( ! $('#mainNav').hasClass('navbar-reduce')) {
+      $('#mainNav').addClass('navbar-reduce');
+    }
+  })
 
-function plusSlides(n) {
-    showSlides(slideIndex += n);
-}
+  // Preloader
+  $(window).on('load', function () {
+    if ($('#preloader').length) {
+      $('#preloader').delay(100).fadeOut('slow', function () {
+        $(this).remove();
+      });
+    }
+  });
 
-function currentSlide(n) {
-    showSlides(slideIndex = n);
-}
+  // Back to top button
+  $(window).scroll(function() {
+    if ($(this).scrollTop() > 100) {
+      $('.back-to-top').fadeIn('slow');
+    } else {
+      $('.back-to-top').fadeOut('slow');
+    }
+  });
+  $('.back-to-top').click(function(){
+    $('html, body').animate({scrollTop : 0},1500, 'easeInOutExpo');
+    return false;
+  });
 
-function showSlides(n) {
-    var i;
-    var slides = document.getElementsByClassName("mySlides");
-    var dots = document.getElementsByClassName("dot");
-    if (n > slides.length) {slideIndex = 1}
-        if (n < 1) {slideIndex = slides.length}
-        for (i = 0; i < slides.length; i++) {
-        slides[i].style.display = "none";
-        }
-        for (i = 0; i < dots.length; i++) {
-        dots[i].className = dots[i].className.replace(" active", "");
-        }
-    slides[slideIndex-1].style.display = "block";
-    dots[slideIndex-1].className += " active";
-}
+	/*--/ Star ScrollTop /--*/
+	$('.scrolltop-mf').on("click", function () {
+		$('html, body').animate({
+			scrollTop: 0
+		}, 1000);
+	});
 
-/* Source: https://codepen.io/annalarson/pen/AegVzq */
-$(document).ready(function() {
-    $(window).scroll( function(){
-        $('.slideshow-container').each( function(i){            
-            var bottom_of_object = $(this).position().top + $(this).outerHeight();
-            var bottom_of_window = $(window).scrollTop() + $(window).height();
-            if( bottom_of_window > bottom_of_object ){
-                $(this).animate({'opacity':'1'},1500);
-                $('.dot-container').animate({'opacity':'1'},1500);
-            }            
-        });
-    });
-});
+	/*--/ Star Scrolling nav /--*/
+	$('a.js-scroll[href*="#"]:not([href="#"])').on("click", function () {
+		if (location.pathname.replace(/^\//, '') == this.pathname.replace(/^\//, '') && location.hostname == this.hostname) {
+			var target = $(this.hash);
+			target = target.length ? target : $('[name=' + this.hash.slice(1) + ']');
+			if (target.length) {
+				$('html, body').animate({
+					scrollTop: (target.offset().top - navHeight + 5)
+				}, 1000, "easeInOutExpo");
+				return false;
+			}
+		}
+	});
+
+	// Closes responsive menu when a scroll trigger link is clicked
+	$('.js-scroll').on("click", function () {
+		$('.navbar-collapse').collapse('hide');
+	});
+
+	// Activate scrollspy to add active class to navbar items on scroll
+	$('body').scrollspy({
+		target: '#mainNav',
+		offset: navHeight
+	});
+	/*--/ Navbar Menu Reduce /--*/
+	$(window).trigger('scroll');
+
+	/*--/ Testimonials owl /--*/
+	$('#testimonial-mf').owlCarousel({
+		margin: 20,
+		autoplay: true,
+		autoplayTimeout: 4000,
+		autoplayHoverPause: true,
+		responsive: {
+			0: {
+				items: 1,
+			}
+		}
+	});
+
+})(jQuery);

@@ -1,244 +1,575 @@
 <!DOCTYPE html>
 <head>
     <meta charset="UTF-8">
-    <title>{{name}}</title> 
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-    <link rel="stylesheet" type="text/css" href="../static/styles/main.css">
-    <script src="http://code.jquery.com/jquery-latest.js"></script>
+    <title>{{name}}</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">    <link rel="stylesheet" type="text/css" href="../static/styles/main.css">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.8.0/dist/leaflet.css"
+    integrity="sha512-hoalWLoI8r4UszCkZ5kL8vayOGVae1oxXe/2A4AO6J9+580uKHDO3JdHb7NzwwzK5xr/Fs0W40kiNHxM9vyTtQ=="
+    crossorigin=""/>
+    <script src="https://kit.fontawesome.com/bd5c37484a.js" crossorigin="anonymous"></script>
 </head>
-<body>
-    <!-- Name & Photo -->
-      <div id="bigimg">
-        <div style="margin-top:130px;" class="container">
-            <div class="row">
-                <div class="col-md-8 col-md-offset-2 text-center inner">
-                    <img class="roundedimg" src="../static/img/logo.jpg" />
-                    <h1 class="animated fadeInDown" style="color:black;">{{name}}</h1>
-                    <p style="color:#272727; font-size: 17px;">Computer Science Student at {{university}}</p>
-                </div>
-            </div>
+<body id="page-top">
+
+     <!-- Menu bar -->
+    <nav class="navbar navbar-b navbar-trans navbar-expand-md fixed-top" id="mainNav">
+        <div class="container">
+          <a class="navbar-brand js-scroll" href="#page-top">CS</a>
+          <button class="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target="#navbarDefault"
+            aria-controls="navbarDefault" aria-expanded="false" aria-label="Toggle navigation">
+            <span></span>
+            <span></span>
+            <span></span>
+          </button>
+          <div class="navbar-collapse collapse justify-content-end" id="navbarDefault">
+            <ul class="navbar-nav">
+              <li class="nav-item">
+                <a class="nav-link js-scroll active" href="#home">Home</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link js-scroll" href="#about">About</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link js-scroll" href="#service">Services</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link js-scroll" href="#work">Work</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link js-scroll" href="#experience">Experience</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link js-scroll" href="#contact">Contact</a>
+              </li>
+            </ul>
+          </div>
         </div>
-    </div>
+      </nav>
 
-    <!-- Menu bar -->
-    <section class="menu">
-        <nav style="margin:0px; border-radius: 0px;" class="navbar navbar-inverse">
-            <div class="container-fluid">
-                <div class="navbar-header">
-                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button>
-                    <a style="font-size:23px;padding-left:40px;" class="navbar-brand">{{name}}</a>
-                </div>
-                <div class="collapse navbar-collapse" id="myNavbar">
-                    <ul class="spaceWords nav navbar-nav navbar-right">
-                        <li><a id="redirection1" href="#">Home</a></li>
-                        <li><a id="redirection2" href="#">About</a></li>
-                        <li><a id="redirection4" href="#">Education</a></li>
-                        <li><a id="redirection3" href="#">Experience</a></li>
-                        <li><a href="{{ url_for('views.hobbies') }}">Hobbies</a></li>
-                        <li><a href="{{ url_for('views.map') }}">Map</a></li>
-                    </ul>
-                </div>
+    <!-- Name & Photo -->
+    <div id="home" class="intro route bg-image" style="background-image: url(static/img/background.jpg)">
+        <div class="overlay-itro"></div>
+        <div class="intro-content display-table">
+          <div class="table-cell">
+            <div class="container">
+              <p class="display-6 color-d">Hello, world!</p>
+              <h1 class="intro-title mb-4">I am {{name}}</h1>
+              <p class="intro-subtitle"><span class="text-slider-items">CS STUDENT,Mobile Developer,PE Fellow</span><strong class="text-slider"></strong></p>
             </div>
-        </nav>
-    </section>
-
-    <section class="menu2">
-        <nav style="margin:0px; border-radius: 0px;" class="navbar navbar-inverse">
-            <div class="container-fluid">
-                <div class="navbar-header">
-                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button>
-                    <a style="font-size:23px;padding-left:40px;" class="navbar-brand">{{name}}</a>
-                </div>
-                <div class="collapse navbar-collapse" id="myNavbar">
-                    <ul class="spaceWords nav navbar-nav navbar-right">
-                        <li><a id="redirection5" href="#">Home</a></li>
-                        <li><a id="redirection6" href="#">About</a></li>
-                        <li><a id="redirection8" href="#">Education</a></li>
-                        <li><a id="redirection7" href="#">Experience</a></li>
-                        <li><a href="{{ url_for('views.hobbies') }}">Hobbies</a></li>
-                        <li><a href="{{ url_for('views.map') }}">Map</a></li>
-                    </ul>
-                </div>
-            </div>
-        </nav>
-    </section>
+          </div>
+        </div>
+      </div>
 
     <!-- About me -->
-    <div id="aboutme">
+    <section id="about" class="about-mf sect-pt4 route">
         <div class="container">
-            <div style=" overflow:hidden;margin:80px 0px 80px 0px;" class="row">
-                <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
-                    <img class="imgfade" style="overflow:hidden;width:114%;" src="../static/img/logo.jpg">
+          <div class="row">
+            <div class="col-sm-12">
+              <div class="box-shadow-full">
+                <div class="row">
+                  <div class="col-md-6">
+                    <img src="static/img/carlos.png" class="img-fluid rounded b-shadow-a" alt="">
+                  </div>
+                  <div class="col-md-6">
+                    <div class="about-me pt-4 pt-md-0">
+                      <div class="title-box-2">
+                        <h5 class="title-left">
+                          About me
+                        </h5>
+                      </div>
+                      <p class="lead">
+                        {{about}}
+                      </p>
+                      <p class="lead">
+                        {{about2}}
+                      </p>
+                    </div>
+                  </div>
                 </div>
-                <div class="col-xs-12 col-sm-12 col-md-7 col-md-offset-1 col-lg-7">
-                    <div class="row">
-                        <div class="col-md-12">
-                            <h3 style="overflow:hidden;margin:10px 0px 30px 0px;font-weight: bold">HI, I'M {{name}}</h3>
-                            <p style="font-size: 16px;" >{{about}}</p>
-                            <p style="font-size: 16px;">{{about2}}</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+  <!-- Services -->
+  <section id="service" class="services-mf route">
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-12">
+          <div class="title-box text-center">
+            <h3 class="title-a">
+              Services
+            </h3>
+            <p class="subtitle-a">
+              My different areas of experience
+            </p>
+            <div class="line-mf"></div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-4">
+          <div class="service-box">
+            <div class="service-ico">
+              <span class="ico-circle"><i class="fa-solid fa-mobile-screen"></i></span>
+            </div>
+            <div class="service-content">
+              <h2 class="s-title">Mobile Development</h2>
+              <p class="s-description text-center">
+                Experience with the open source UI software Flutter and Swift for IOS development
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="service-box">
+            <div class="service-ico">
+              <span class="ico-circle"><i class="fa-solid fa-screwdriver-wrench"></i></span>
+            </div>
+            <div class="service-content">
+              <h2 class="s-title">Production Engineering</h2>
+              <p class="s-description text-center">
+                  Learning....
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="service-box">
+            <div class="service-ico">
+              <span class="ico-circle"><i class="fa-solid fa-computer"></i></span>
+            </div>
+            <div class="service-content">
+              <h2 class="s-title">Web Development</h2>
+              <p class="s-description text-center">
+                HTML, CSS, Boostrap, Javascript, Flask
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Projects -->
+  <div id="projects" class="statistic-area section-padding">
+    <div class="container">
+        <div class="row">
+            <div style="width:50%;" class="col-md-6 text-center">
+                <div class="item">
+                    <button onclick="location.href='https://github.com/carlosseda-code'" style="margin-top:40px;" class="bfade">See my projects </button> 
+                    <p style="padding-top:10px;" >Github</p>
+                </div>
+            </div>
+            <div style="width:50%;" class="col-md-6 text-center" >
+                <div class="item">
+                    <img style="width:15%" src="static/img/rocket.png" />
+                    <h2 style="color:white;">25</h2>
+                    <p>Repos</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+  <!-- Portfolio -->
+  <section id="work" class="portfolio-mf sect-pt4 route">
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-12">
+          <div class="title-box text-center">
+            <h3 class="title-a">
+              Portfolio
+            </h3>
+            <p class="subtitle-a">
+            Creations made to learn or impact
+            </p>
+            <div class="line-mf"></div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-4">
+          <div class="work-box">
+            <a href="img/work-1.jpg" data-lightbox="gallery-mf">
+              <div class="work-img">
+                <img src="img/work-1.jpg" alt="" class="img-fluid">
+              </div>
+              <div class="work-content">
+                <div class="row">
+                  <div class="col-sm-8">
+                    <h2 class="w-title">Project</h2>
+                    <div class="w-more">
+                      <span class="w-ctegory">name</span> / <span class="w-date">date</span>
+                    </div>
+                  </div>
+                  <div class="col-sm-4">
+                    <div class="w-like">
+                      <span class="ion-ios-plus-outline"></span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </a>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="work-box">
+            <a href="img/work-2.jpg" data-lightbox="gallery-mf">
+              <div class="work-img">
+                <img src="img/work-2.jpg" alt="" class="img-fluid">
+              </div>
+              <div class="work-content">
+                <div class="row">
+                  <div class="col-sm-8">
+                    <h2 class="w-title">Project</h2>
+                    <div class="w-more">
+                      <span class="w-ctegory">Web</span> / <span class="w-date">date</span>
+                    </div>
+                  </div>
+                  <div class="col-sm-4">
+                    <div class="w-like">
+                      <span class="ion-ios-plus-outline"></span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </a>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="work-box">
+            <a href="img/work-3.jpg" data-lightbox="gallery-mf">
+              <div class="work-img">
+                <img src="img/work-3.jpg" alt="" class="img-fluid">
+              </div>
+              <div class="work-content">
+                <div class="row">
+                  <div class="col-sm-8">
+                    <h2 class="w-title">Project</h2>
+                    <div class="w-more">
+                      <span class="w-ctegory">Web Design</span> / <span class="w-date">18 Sep. 2018</span>
+                    </div>
+                  </div>
+                  <div class="col-sm-4">
+                    <div class="w-like">
+                      <span class="ion-ios-plus-outline"></span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </a>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="work-box">
+            <a href="img/work-4.jpg" data-lightbox="gallery-mf">
+              <div class="work-img">
+                <img src="img/work-4.jpg" alt="" class="img-fluid">
+              </div>
+              <div class="work-content">
+                <div class="row">
+                  <div class="col-sm-8">
+                    <h2 class="w-title">Project</h2>
+                    <div class="w-more">
+                      <span class="w-ctegory">Web Design</span> / <span class="w-date">18 Sep. 2018</span>
+                    </div>
+                  </div>
+                  <div class="col-sm-4">
+                    <div class="w-like">
+                      <span class="ion-ios-plus-outline"></span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </a>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="work-box">
+            <a href="img/work-5.jpg" data-lightbox="gallery-mf">
+              <div class="work-img">
+                <img src="img/work-5.jpg" alt="" class="img-fluid">
+              </div>
+              <div class="work-content">
+                <div class="row">
+                  <div class="col-sm-8">
+                    <h2 class="w-title">Project</h2>
+                    <div class="w-more">
+                      <span class="w-ctegory">Web Design</span> / <span class="w-date">18 Sep. 2018</span>
+                    </div>
+                  </div>
+                  <div class="col-sm-4">
+                    <div class="w-like">
+                      <span class="ion-ios-plus-outline"></span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </a>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="work-box">
+            <a href="img/work-6.jpg" data-lightbox="gallery-mf">
+              <div class="work-img">
+                <img src="img/work-6.jpg" alt="" class="img-fluid">
+              </div>
+              <div class="work-content">
+                <div class="row">
+                  <div class="col-sm-8">
+                    <h2 class="w-title">Project</h2>
+                    <div class="w-more">
+                      <span class="w-ctegory">Web Design</span> / <span class="w-date">18 Sep. 2017</span>
+                    </div>
+                  </div>
+                  <div class="col-sm-4">
+                    <div class="w-like">
+                      <span class="ion-ios-plus-outline"></span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </a>
+          </div>
+        </div>
+        
+      </div>
+    </div>
+  </section>
+
+ <!-- Map -->
+  <section class="about-mf sect-pt4 route">
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-12">
+          <div class="box-shadow-full text-center">
+                  <div class="title-box-2">
+                    <h5 class="title-left text-center">
+                    Cool places I've been To
+                    </h5>
+                  </div>
+                  <div class="text-center">
+                    <script src="https://unpkg.com/leaflet@1.8.0/dist/leaflet.js"
+                    integrity="sha512-BB3hKbKWOc9Ez/TAwyWxNXeoV9c1v6FIeYiBieIWkpLjauysF18NzgR1MBNBXf8/KABdlkX68nAhlwcDFLGPCQ=="
+                    crossorigin=""></script>
+                
+                    <div id="map"></div>
+                  </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Timeline -->
+  <div class="container">
+    <div class="row">
+        <div class="col-sm-12">
+          <div class="title-box text-center">
+            <h3 class="title-a">
+              Experience
+            </h3>
+            <p class="subtitle-a">
+                My path into computer science
+            </p>
+            <div class="line-mf"></div>
+          </div>
+        </div>
+      </div>
+      </div>
+  <ul id="experience" class="timeline">
+    <li>
+      <div class="direction-r">
+        <div class="flag-wrapper">
+          <span class="hexa"></span>
+          <span class="flag">Lorem ipsum.</span>
+          <span class="time-wrapper"><span class="time">Feb 2015</span></span>
+        </div>
+        <div class="desc">Lorem ipsum Nisi labore aute do aute culpa magna nulla voluptate exercitation deserunt proident.</div>
+      </div>
+    </li>
+    <li>
+      <div class="direction-l">
+        <div class="flag-wrapper">
+          <span class="hexa"></span>
+          <span class="flag">Lorem ipsum Anim.</span>
+          <span class="time-wrapper"><span class="time">Dec 2014</span></span>
+        </div>
+        <div class="desc">Lorem ipsum In ut sit in dolor nisi ex magna eu anim anim tempor dolore aliquip enim cupidatat laborum dolore.</div>
+      </div>
+    </li>
+    <li>
+      <div class="direction-r">
+        <div class="flag-wrapper">
+          <span class="hexa"></span>
+          <span class="flag">Lorem Occaecat.</span>
+          <span class="time-wrapper"><span class="time">July 2014</span></span>
+        </div>
+        <div class="desc">Lorem ipsum Minim labore Ut cupidatat quis qui deserunt proident fugiat pariatur cillum cupidatat reprehenderit sit id dolor consectetur ut.</div>
+      </div>
+    </li>
+  </ul>
+
+  <section class="paralax-mf footer-paralax bg-image sect-mt4 route" style="background-image: url(img/overlay-bg.jpg)">
+    <div class="overlay-mf"></div>
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-12">
+          <div class="contact-mf">
+            <div id="contact" class="box-shadow-full">
+              <div class="row">
+                <div class="col-md-6">
+                  <div class="title-box-2">
+                    <h5 class="title-left">
+                      Send me a message
+                    </h5>
+                  </div>
+                  <div>
+                      <form action="" method="post" role="form" class="contactForm">
+                      <div id="sendmessage">Your message has been sent. Thank you!</div>
+                      <div id="errormessage"></div>
+                      <div class="row">
+                        <div class="col-md-12 mb-3">
+                          <div class="form-group">
+                            <input type="text" name="name" class="form-control" id="name" placeholder="Your Name" data-rule="minlen:4" data-msg="Please enter at least 4 chars" />
+                            <div class="validation"></div>
+                          </div>
                         </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Education timeline -->
-    <div id= "education" style="margin:100px 0px;">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="text-center">
-                        <h2 style="margin:20px; font-size: 35px !important; font-weight: bold;" class="first-headline">Education</h2>
-                    </div>
-                </div>
-            </div>
-            <ul class="timeline">
-                {% for i in range(1, education|length + 1) %}
-                    {% if i%2 == 0 %}
-                        <li>
-                            <div class="direction-l">
-                            <div class="flag-wrapper">
-                                <span class="flag">{{education[i - 1]}}</span>
-                                <span class="time-wrapper"><span class="time">{{education_duration[i - 1]}}</span></span>
+                        <div class="col-md-12 mb-3">
+                          <div class="form-group">
+                            <input type="email" class="form-control" name="email" id="email" placeholder="Your Email" data-rule="email" data-msg="Please enter a valid email" />
+                            <div class="validation"></div>
+                          </div>
+                        </div>
+                        <div class="col-md-12 mb-3">
+                            <div class="form-group">
+                              <input type="text" class="form-control" name="subject" id="subject" placeholder="Subject" data-rule="minlen:4" data-msg="Please enter at least 8 chars of subject" />
+                              <div class="validation"></div>
                             </div>
-                            <div class="description">{{education_names[i - 1]}} <br/>Cumulative GPA: {{education_gpa[i - 1]}}</div>
-                            </div>
-                        </li>
-                    {% else %}
-                        <li>
-                            <div class="direction-r">
-                                <div class="flag-wrapper">
-                                    <span class="flag">{{education[i - 1]}}</span>
-                                    <span class="time-wrapper"><span class="time">{{education_duration[i - 1]}}</span></span>
-                                </div>
-                                <div class="description">{{education_names[i - 1]}} <br/> Graduating in {{education_grad[i - 1]}} <br/>Cumulative GPA: {{education_gpa[i - 1]}}</div>
-                                </div>
-                        </li>
-                    {% endif %}
-
-                {% endfor %}
-            </ul>
-
-        </div>
-    </div>
-  
-    <!-- Work experiences -->
-    <!-- Source: https://www.w3schools.com/howto/howto_js_quotes_slideshow.asp-->
-    <div style="margin:100px 0px;">
-        <h2 style="margin:20px; text-align:center; font-size:35px !important; font-weight:bold;">Experience</h2>
-        <div id = "experience" class="slideshow-container" style="opacity:0;">
-            {% for i in range(job_titles|length) %}
-                <div class="mySlides">
-                    <h3 style="font-weight:bold;">{{company_names[i]}}</h3>
-                    <h4>{{job_titles[i]}}</h4>
-                    <h4><i> {{start_dates[i]}} - {{end_dates[i]}}</i></h4>
-                    <h4>{{locations[i]}}</h4>
-                    {% set str_resp = responsibilities[i] %}
-                    {% set lst_resp = str_resp.split('.')%}
-                    <ul>
-                        {% for j in range(lst_resp|length - 1) %}
-                            <li>{{lst_resp[j]}}</li>
-                        {% endfor %}
+                        </div>
+                        <div class="col-md-12 mb-3">
+                          <div class="form-group">
+                            <textarea class="form-control" name="message" rows="5" data-rule="required" data-msg="Please write something for us" placeholder="Message"></textarea>
+                            <div class="validation"></div>
+                          </div>
+                        </div>
+                        <div class="col-md-12">
+                          <button type="submit" class="button button-a button-big button-rouded">Send Message</button>
+                        </div>
+                      </div>
+                    </form>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="title-box-2 pt-4 pt-md-0">
+                    <h5 class="title-left">
+                      Get in Touch
+                    </h5>
+                  </div>
+                  <div class="more-info">
+                    <p class="lead">
+                        Feel free to connect with me on any of my social networks
+                    </p>
+                    <ul class="list-ico">
+                      <li><span class="ion-ios-telephone"></span> (+52) 81 2447 7899</li>
+                      <li><span class="ion-email"></span> carlosseda123@gmail.com</li>
                     </ul>
+                  </div>
+                  <div class="socials">
+                    <ul>
+                      <li><a href="https://www.linkedin.com/in/carlos-seda/" target="_blank"><span class="ico-circle"><i class="fa-brands fa-linkedin-in"></i></span></a></li>
+                      <li><a href="https://www.instagram.com/cs020301/" target="_blank"><span class="ico-circle"><i class="fa-brands fa-instagram-square"></i></span></a></li>
+                      <li><a href="https://twitter.com/carlitosseda" target="_blank"><span class="ico-circle"><i class="fa-brands fa-twitter"></i></span></a></li>                    </ul>
+                  </div>
                 </div>
-            {% endfor %}
-        
-            <!-- Next/prev buttons -->
-            <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
-            <a class="next" onclick="plusSlides(1)">&#10095;</a>
+              </div>
+            </div>
+          </div>
         </div>
-        
-        <!-- Dots -->
-        <div class="dot-container" style="opacity:0;">
-            <span class="dot" onclick="currentSlide(1)"></span>
-            <span class="dot" onclick="currentSlide(2)"></span>
-            <span class="dot" onclick="currentSlide(3)"></span>
+      </div>
+    </div>
+    <footer>
+      <div class="container">
+        <div class="row">
+          <div class="col-sm-12">
+            <div class="copyright-box">
+              <div class="credits">
+                Developed by Carlos Seda - 2022 
+              </div>
+            </div>
+          </div>
         </div>
-    </div>
+      </div>
+    </footer>
+  </section>
 
-    <!--Contact-->
-    <div class="contact">
-        <h3>Contact Me</h3>
-        <p>email@email.com | (123) 456-7890</p>
-        <a href="https://github.com/janedoe" ><img class="contactPic" src="../static/img/github.png"></a>
-        <a href="https://www.linkedin.com/in/johndoe/"><img class="contactPic" src="../static/img/linkedin.png"></a>
-    </div>
-
+    <a href="#" class="back-to-top"><i class="fa-solid fa-arrow-up"></i></a>
+    <div id="preloader"></div>
+    <!-- JavaScript Libraries -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+    <script src="http://code.jquery.com/jquery-latest.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
+    <script src="../static/scripts/lightbox.js"></script>
+    <script src="../static/scripts/easing.js"></script>
     <script src="../static/scripts/slides.js"></script>
+
     <script>
-        $(document).ready(function() {
-        $("#bigimg").css({
-            "height": $(window).height() + "px"
-        });
+        $(window).scroll(function() {
+            if ($(this).scrollTop() > 50) {
+                $('.navbar-expand-md').addClass('navbar-reduce');
+                $('.navbar-expand-md').removeClass('navbar-trans');
+		} else {
+			    $('.navbar-expand-md').addClass('navbar-trans');
+			    $('.navbar-expand-md').removeClass('navbar-reduce');
+		}
+		    if ($(this).scrollTop() > 1200) {
+			    $('.scrolltop-mf').fadeIn(1000, "easeInOutExpo");
+		} else {
+			    $('.scrolltop-mf').fadeOut(1000, "easeInOutExpo");
+		}
     });
 
-    $(window).scroll(function() {
-        if ($(this).scrollTop() > $(window).height() - 350) {
-            $('.imgfade').addClass("animated fadeInDown");
-        }
+    if ($('.text-slider').length == 1) {
+    var typed_strings = $('.text-slider-items').text();
+		var typed = new Typed('.text-slider', {
+			strings: typed_strings.split(','),
+			typeSpeed: 80,
+			loop: true,
+			backDelay: 1100,
+			backSpeed: 30
+		});
+	}
 
-        if ($(this).scrollTop() > $(window).height()) {
-            $('.menu2').addClass("disp");
-        } else {
-            $('.menu2').removeClass("disp");
-        }
-    });
+    $('.js-scroll').on("click", function () {
+		$('.navbar-collapse').collapse('hide');
+	});
 
-    $('#redirection1').click(function() {
-            $('body, html').animate({
-                scrollTop: $('#bigimg').offset().top
-            }, 800);
-        });
-    
-    $('#redirection2').click(function() {
-            $('body, html').animate({
-                scrollTop: $('#aboutme').offset().top
-            }, 800);
-        });
-    
-    $('#redirection3').click(function() {
-            $('body, html').animate({
-                scrollTop: $('#experience').offset().top
-            }, 800);
-        });
-    
-    $('#redirection4').click(function() {
-        $('body, html').animate({
-            scrollTop: $('#education').offset().top
-        }, 800);
-    });
-    
-    $('#redirection5').click(function() {
-            $('body, html').animate({
-                scrollTop: $('#bigimg').offset().top
-            }, 800);
-        });
-    
-    $('#redirection6').click(function() {
-            $('body, html').animate({
-                scrollTop: $('#aboutme').offset().top
-            }, 800);
-        });
-    $('#redirection7').click(function() {
-        $('body, html').animate({
-            scrollTop: $('#experience').offset().top
-        }, 800);
-    });
-    $('#redirection8').click(function() {
-        $('body, html').animate({
-            scrollTop: $('#education').offset().top
-        }, 800);
-    });
+        var map = L.map('map').setView([51.505, -0.09], 13);
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            maxZoom: 19,
+            attribution: '© OpenStreetMap'
+        }).addTo(map);
+
+        var marker = L.marker([40.41736266736793, -3.703699627693859]).addTo(map);
+        marker.bindPopup("<h5 style='font-weight:bold'>Madrid, Spain</h5><h6>Just to explore</h6>");
+
+        var marker = L.marker([43.69617085305873, 7.265667275369689]).addTo(map);
+        marker.bindPopup("<h5 style='font-weight:bold'>Nice, France</h5><h6>Exchange program <3</h6>");
+
+        var marker = L.marker([55.94176531071367, -3.206713417943561]).addTo(map);
+        marker.bindPopup("<h5 style='font-weight:bold'>Edinburgh, Scotland</h5><h6>Holidays with friends</h6>");
+
+        var marker = L.marker([50.06853452970774, 14.420473976380919]).addTo(map);
+        marker.bindPopup("<h5 style='font-weight:bold'>Prague, Czech Republic</h5><h6>Visited one of my friends</h6>");
+
+        var marker = L.marker([51.50142584382562, -0.11872003558175541]).addTo(map);
+        marker.bindPopup("<h5 style='font-weight:bold'>London, UK</h5><h6>I did an exchange program</h6>");
+
+        var marker = L.marker([48.857829268030436, 2.2977666610693106]).addTo(map);
+        marker.bindPopup("<h5 style='font-weight:bold'>Paris, France</h5><h6>Favourite city ever</h6>");
+
+        map.setView([0, 0], 1.5);
     </script>
 </body>
 </html>

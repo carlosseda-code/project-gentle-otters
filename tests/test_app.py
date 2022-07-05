@@ -13,9 +13,8 @@ class AppTestCase(unittest.TestCase):
         assert response.status_code == 200
         html = response.get_data(as_text=True)
         assert "<title>Carlos Seda</title>" in html 
-        assert "High school" in html 
-        assert "May 2020 - August 2020" in html
-        assert "email@email.com" in html        
+        assert "Experience" in html 
+        assert "carlosseda123@gmail.com" in html        
     
     def test_timeline(self):
         response = self.client.get("/api/timeline_post")

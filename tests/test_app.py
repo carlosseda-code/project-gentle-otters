@@ -45,6 +45,7 @@ class AppTestCase(unittest.TestCase):
             'email': 'jenna@gmail.com',
             'content': 'Test for post 2'
         })
+        
         assert response.status_code == 200
         response = self.client.get("/api/timeline_post")
         assert response.status_code == 200

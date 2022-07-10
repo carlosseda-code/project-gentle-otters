@@ -6,8 +6,73 @@
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.8.0/dist/leaflet.css"
     integrity="sha512-hoalWLoI8r4UszCkZ5kL8vayOGVae1oxXe/2A4AO6J9+580uKHDO3JdHb7NzwwzK5xr/Fs0W40kiNHxM9vyTtQ=="
     crossorigin=""/>
+    <!-- JavaScript Libraries -->
     <script src="https://kit.fontawesome.com/bd5c37484a.js" crossorigin="anonymous"></script>
-</head>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+    <script src="http://code.jquery.com/jquery-latest.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
+    <script src="../static/scripts/lightbox.js"></script>
+    <script src="../static/scripts/easing.js"></script>
+    <script src="../static/scripts/slides.js"></script>
+
+    <script>
+        $(window).scroll(function() {
+            if ($(this).scrollTop() > 50) {
+                $('.navbar-expand-md').addClass('navbar-reduce');
+                $('.navbar-expand-md').removeClass('navbar-trans');
+		} else {
+			    $('.navbar-expand-md').addClass('navbar-trans');
+			    $('.navbar-expand-md').removeClass('navbar-reduce');
+		}
+		    if ($(this).scrollTop() > 1200) {
+			    $('.scrolltop-mf').fadeIn(1000, "easeInOutExpo");
+		} else {
+			    $('.scrolltop-mf').fadeOut(1000, "easeInOutExpo");
+		}
+    });
+
+    if ($('.text-slider').length == 1) {
+    var typed_strings = $('.text-slider-items').text();
+		var typed = new Typed('.text-slider', {
+			strings: typed_strings.split(','),
+			typeSpeed: 80,
+			loop: true,
+			backDelay: 1100,
+			backSpeed: 30
+		});
+	}
+
+    $('.js-scroll').on("click", function () {
+		$('.navbar-collapse').collapse('hide');
+	});
+
+        var map = L.map('map').setView([51.505, -0.09], 13);
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            maxZoom: 19,
+            attribution: '© OpenStreetMap'
+        }).addTo(map);
+
+        var marker = L.marker([40.41736266736793, -3.703699627693859]).addTo(map);
+        marker.bindPopup("<h5 style='font-weight:bold'>Madrid, Spain</h5><h6>Just to explore</h6>");
+
+        var marker = L.marker([43.69617085305873, 7.265667275369689]).addTo(map);
+        marker.bindPopup("<h5 style='font-weight:bold'>Nice, France</h5><h6>Exchange program <3</h6>");
+
+        var marker = L.marker([55.94176531071367, -3.206713417943561]).addTo(map);
+        marker.bindPopup("<h5 style='font-weight:bold'>Edinburgh, Scotland</h5><h6>Holidays with friends</h6>");
+
+        var marker = L.marker([50.06853452970774, 14.420473976380919]).addTo(map);
+        marker.bindPopup("<h5 style='font-weight:bold'>Prague, Czech Republic</h5><h6>Visited one of my friends</h6>");
+
+        var marker = L.marker([51.50142584382562, -0.11872003558175541]).addTo(map);
+        marker.bindPopup("<h5 style='font-weight:bold'>London, UK</h5><h6>I did an exchange program</h6>");
+
+        var marker = L.marker([48.857829268030436, 2.2977666610693106]).addTo(map);
+        marker.bindPopup("<h5 style='font-weight:bold'>Paris, France</h5><h6>Favourite city ever</h6>");
+
+        map.setView([0, 0], 1.5);
+    </script>
+  </head>
 <body id="page-top">
 
      <!-- Menu bar -->
@@ -505,71 +570,6 @@
   </section>
 
     <a href="#" class="back-to-top"><i class="fa-solid fa-arrow-up"></i></a>
-    <div id="preloader"></div>
-    <!-- JavaScript Libraries -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
-    <script src="http://code.jquery.com/jquery-latest.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
-    <script src="../static/scripts/lightbox.js"></script>
-    <script src="../static/scripts/easing.js"></script>
-    <script src="../static/scripts/slides.js"></script>
 
-    <script>
-        $(window).scroll(function() {
-            if ($(this).scrollTop() > 50) {
-                $('.navbar-expand-md').addClass('navbar-reduce');
-                $('.navbar-expand-md').removeClass('navbar-trans');
-		} else {
-			    $('.navbar-expand-md').addClass('navbar-trans');
-			    $('.navbar-expand-md').removeClass('navbar-reduce');
-		}
-		    if ($(this).scrollTop() > 1200) {
-			    $('.scrolltop-mf').fadeIn(1000, "easeInOutExpo");
-		} else {
-			    $('.scrolltop-mf').fadeOut(1000, "easeInOutExpo");
-		}
-    });
-
-    if ($('.text-slider').length == 1) {
-    var typed_strings = $('.text-slider-items').text();
-		var typed = new Typed('.text-slider', {
-			strings: typed_strings.split(','),
-			typeSpeed: 80,
-			loop: true,
-			backDelay: 1100,
-			backSpeed: 30
-		});
-	}
-
-    $('.js-scroll').on("click", function () {
-		$('.navbar-collapse').collapse('hide');
-	});
-
-        var map = L.map('map').setView([51.505, -0.09], 13);
-        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-            maxZoom: 19,
-            attribution: '© OpenStreetMap'
-        }).addTo(map);
-
-        var marker = L.marker([40.41736266736793, -3.703699627693859]).addTo(map);
-        marker.bindPopup("<h5 style='font-weight:bold'>Madrid, Spain</h5><h6>Just to explore</h6>");
-
-        var marker = L.marker([43.69617085305873, 7.265667275369689]).addTo(map);
-        marker.bindPopup("<h5 style='font-weight:bold'>Nice, France</h5><h6>Exchange program <3</h6>");
-
-        var marker = L.marker([55.94176531071367, -3.206713417943561]).addTo(map);
-        marker.bindPopup("<h5 style='font-weight:bold'>Edinburgh, Scotland</h5><h6>Holidays with friends</h6>");
-
-        var marker = L.marker([50.06853452970774, 14.420473976380919]).addTo(map);
-        marker.bindPopup("<h5 style='font-weight:bold'>Prague, Czech Republic</h5><h6>Visited one of my friends</h6>");
-
-        var marker = L.marker([51.50142584382562, -0.11872003558175541]).addTo(map);
-        marker.bindPopup("<h5 style='font-weight:bold'>London, UK</h5><h6>I did an exchange program</h6>");
-
-        var marker = L.marker([48.857829268030436, 2.2977666610693106]).addTo(map);
-        marker.bindPopup("<h5 style='font-weight:bold'>Paris, France</h5><h6>Favourite city ever</h6>");
-
-        map.setView([0, 0], 1.5);
-    </script>
 </body>
 </html>

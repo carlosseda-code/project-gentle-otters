@@ -60,7 +60,7 @@ class AppTestCase(unittest.TestCase):
         response = self.client.get("/timeline")
         html = response.get_data(as_text=True)
         assert "<title>Timeline</title>" in html 
-        assert "List of Timeline Posts" in html 
+        assert "List of Posts" in html 
 
     def test_malformed_timeline_post(self):
         # POST request missing 'name'
